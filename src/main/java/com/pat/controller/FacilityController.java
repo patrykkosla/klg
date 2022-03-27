@@ -24,6 +24,11 @@ public class FacilityController {
 		this.facilityService = facilityServie;
 	}
 	
+	@GetMapping("test")
+	public String  makeTest() {
+		return "dziala";
+	}
+	
 	@GetMapping
 	public List<Facility>  getAllFacilities() {
 		return facilityService.getAllFacilities();

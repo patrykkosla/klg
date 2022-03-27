@@ -1,10 +1,14 @@
 package com.pat.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -26,26 +30,26 @@ public class Facility {
 	private double propertyArea;
 	
 	private String descryption; 	
-		
-//		@OneToMany(mappedBy="facility")
-//		private List<Reservation> reservations;
-//		
-//		@ManyToOne 
-//		//@JoinColumn(name = "id", nullable = false)
-//		private User owner;
-		
+	
+	@OneToMany(mappedBy="facility")
+	private List<Reservation> reservations;
+	
+	@ManyToOne
+	private User owner;
+	
+	
 	public Facility() {}
 	
-
-	public Facility(long id, String facilityName, double pricePerDay, double propertyArea, String descryption) {
+	public Facility(long id, String facilityName, double pricePerDay, double propertyArea, String descryption,
+			User owner) {
 		super();
 		this.id = id;
 		this.facilityName = facilityName;
 		this.pricePerDay = pricePerDay;
 		this.propertyArea = propertyArea;
 		this.descryption = descryption;
+		this.owner = owner;
 	}
-
 
 	public long getId() {
 		return id;
@@ -85,6 +89,13 @@ public class Facility {
 
 	public void setDescryption(String descryption) {
 		this.descryption = descryption;
-	}	
-	
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 }
