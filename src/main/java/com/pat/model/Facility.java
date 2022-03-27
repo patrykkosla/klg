@@ -8,32 +8,83 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-	@Entity
-	@Table(name="facilities")
-	public class Facility {
+@Entity
+@Table(name="facilities")
+public class Facility {
 		
-		@Id
-		@GeneratedValue( strategy = GenerationType.IDENTITY )
-		private long id;
-		
-		@Column( name="facility_name",nullable = false)
-		private String facilityName;
-		
-		@Column(name="price_per_day", nullable = false)
-		private double pricePerDay;
-		
-		@Column(name="property_area")
-		private double propertyArea;
-		
-		private String descryption; 	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	private long id;
+	
+	@Column( name="facility_name",nullable = false)
+	private String facilityName;
+	
+	@Column(name="price_per_day", nullable = false)
+	private double pricePerDay;
+	
+	@Column(name="property_area")
+	private double propertyArea;
+	
+	private String descryption; 	
 		
 //		@OneToMany(mappedBy="facility")
 //		private List<Reservation> reservations;
 //		
-//		@ManyToOne
+//		@ManyToOne 
 //		//@JoinColumn(name = "id", nullable = false)
 //		private User owner;
 		
-		public Facility() {}
-		
+	public Facility() {}
+	
+
+	public Facility(long id, String facilityName, double pricePerDay, double propertyArea, String descryption) {
+		super();
+		this.id = id;
+		this.facilityName = facilityName;
+		this.pricePerDay = pricePerDay;
+		this.propertyArea = propertyArea;
+		this.descryption = descryption;
 	}
+
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFacilityName() {
+		return facilityName;
+	}
+
+	public void setFacilityName(String facilityName) {
+		this.facilityName = facilityName;
+	}
+
+	public double getPricePerDay() {
+		return pricePerDay;
+	}
+
+	public void setPricePerDay(double pricePerDay) {
+		this.pricePerDay = pricePerDay;
+	}
+
+	public double getPropertyArea() {
+		return propertyArea;
+	}
+
+	public void setPropertyArea(double propertyArea) {
+		this.propertyArea = propertyArea;
+	}
+
+	public String getDescryption() {
+		return descryption;
+	}
+
+	public void setDescryption(String descryption) {
+		this.descryption = descryption;
+	}	
+	
+}
