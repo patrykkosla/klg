@@ -14,7 +14,7 @@ import com.pat.model.Facility;
 import com.pat.service.FacilityService;
 
 @RestController
-@RequestMapping("api/facilities")
+@RequestMapping("/api/facilities")
 public class FacilityController {
 
 	private FacilityService facilityService;

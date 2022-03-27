@@ -2,12 +2,15 @@ package com.pat.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pat.model.Facility;
 import com.pat.model.Reservation;
 import com.pat.model.User;
 import com.pat.repository.ReservationRepository;
 import com.pat.service.ReservationService;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 	
 	private ReservationRepository reservationrepository;	
