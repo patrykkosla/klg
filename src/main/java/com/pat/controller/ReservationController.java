@@ -3,7 +3,6 @@ package com.pat.controller;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,48 +17,48 @@ import com.pat.service.ReservationService;
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationController {
-	
+
 	private ReservationService reservationService;
 
 	public ReservationController(ReservationService reservationService) {
 		super();
 		this.reservationService = reservationService;
 	}
-	
+
 	@GetMapping
 	public List<Reservation> getAllReservations(){
-		return reservationService.getAllReservations();		
+		return reservationService.getAllReservations();
 	}
-	
+
 	@GetMapping("/tenant/{userName}")
-	public List<Reservation> getReservationsByTenants(@PathVariable("userName") String userName){	
-		return reservationService.getAllUserReservations(userName);			
-	} 
-	
+	public List<Reservation> getReservationsByTenants(@PathVariable("userName") String userName){
+		return reservationService.getAllUserReservations(userName);
+	}
+
 	@GetMapping("/facility/{id}")
-	public List<Reservation> getAllFacilityReservations(@PathVariable("id") Long id){	
-		return reservationService.getAllFacilityReservations(id);			
-	} 
-	
-		
+	public List<Reservation> getAllFacilityReservations(@PathVariable("id") Long id){
+		return reservationService.getAllFacilityReservations(id);
+	}
+
+
 	@PostMapping("/new/{facilityId}/{reservedFrom}/{reservedTo}/{userId}/{reservationCost}")
 	public ResponseEntity<Reservation> createNewReservation(
 			@PathVariable("facilityId" )Long facilityId,
-			@PathVariable("reservedFrom" )String reservedFrom, 
-			@PathVariable("reservedTo" )String reservedTo, 
-			@PathVariable("userId" )Long  userId,	
+			@PathVariable("reservedFrom" )String reservedFrom,
+			@PathVariable("reservedTo" )String reservedTo,
+			@PathVariable("userId" )Long  userId,
 			@PathVariable("reservationCost")double reservationCost){
-	
+
 		 Date reservedFromDate = reservationService.stringToDate(reservedFrom);
 		 Date reservedToDate = reservationService.stringToDate(reservedTo);
-		 return new ResponseEntity<Reservation>(
+		 return new ResponseEntity<>(
 			  reservationService.createNewReservation( facilityId,  reservedFromDate, reservedToDate, userId, reservationCost),
 			  HttpStatus.CREATED);
-	} 
-	
+	}
+
 	@PostMapping("/edit/{reservation}")
 	public ResponseEntity<Reservation> editReservation(Reservation reservation ) {
-		 return new ResponseEntity<Reservation>(
+		 return new ResponseEntity<>(
 			reservationService.editReservation(reservation),
 			HttpStatus.OK );
 	}

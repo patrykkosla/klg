@@ -18,25 +18,25 @@ import com.pat.service.FacilityService;
 public class FacilityController {
 
 	private FacilityService facilityService;
-	
+
 	public FacilityController(FacilityService facilityServie) {
 		super();
 		this.facilityService = facilityServie;
 	}
-	
+
 	@GetMapping("test")
 	public String  makeTest() {
 		return "dziala";
 	}
-	
+
 	@GetMapping
 	public List<Facility>  getAllFacilities() {
 		return facilityService.getAllFacilities();
 	}
-	
+
 	@PostMapping()
 	public ResponseEntity<Facility> saveFacility(@RequestBody Facility facility){
-		return new ResponseEntity<Facility>(facilityService.saveFacility(facility), HttpStatus.CREATED);
+		return new ResponseEntity<>(facilityService.saveFacility(facility), HttpStatus.CREATED);
 	}
-	
+
 }

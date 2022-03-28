@@ -15,31 +15,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name="facilities")
 public class Facility {
-		
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private long id;
-	
+
 	@Column( name="facility_name",nullable = false)
 	private String facilityName;
-	
+
 	@Column(name="price_per_day", nullable = false)
 	private double pricePerDay;
-	
+
 	@Column(name="property_area")
 	private double propertyArea;
-	
-	private String descryption; 	
-	
+
+	private String descryption;
+
 	@OneToMany(mappedBy="facility")
 	private List<Reservation> reservations;
-	
+
 	@ManyToOne
 	private User owner;
-	
-	
+
+
 	public Facility() {}
-	
+
 	public Facility(long id, String facilityName, double pricePerDay, double propertyArea, String descryption,
 			User owner) {
 		super();
@@ -97,5 +97,5 @@ public class Facility {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
-	}	
+	}
 }

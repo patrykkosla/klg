@@ -9,9 +9,9 @@ import com.pat.service.UserService;
 
 @Service
 public class UserServiceImpl  implements UserService{
-	
+
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
