@@ -1,18 +1,14 @@
 package com.pat.controller;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +31,13 @@ public class ReservationController {
 		return reservationService.getAllReservations();		
 	}
 	
+	@GetMapping("/tenant/{userName}")
+	public List<Reservation> getReservationsByTenants(@PathVariable("userName") String userName){	
+		return reservationService.getAllUserReservations(userName);			
+	} 
+	
 	@PostMapping("/new/{facilityId}/{reservedFrom}/{reservedTo}/{userId}")
-	public Reservation createNewReservation(
+	public ResponseEntity<Reservation> createNewReservation(
 			@PathVariable("facilityId" )Long facilityId,
 			@PathVariable("reservedFrom" )String reservedFrom, 
 			@PathVariable("reservedTo" )String reservedTo, 
@@ -45,8 +46,16 @@ public class ReservationController {
 	
 		 Date reservedFromDate = reservationService.stringToDate(reservedFrom);
 		 Date reservedToDate = reservationService.stringToDate(reservedTo);
-		 
-	 return reservationService.createNewReservation( facilityId,  reservedFromDate, reservedToDate, userId);
+		 return new ResponseEntity<Reservation>(
+			  reservationService.createNewReservation( facilityId,  reservedFromDate, reservedToDate, userId),
+			  HttpStatus.CREATED);
 	} 
+	
+	@PostMapping("/edit/{reservation}")
+	public ResponseEntity<Reservation> editReservation(Reservation reservation ) {
+		 return new ResponseEntity<Reservation>(
+			reservationService.editReservation(reservation),
+			HttpStatus.OK );
+	}
 }
 //1648591200

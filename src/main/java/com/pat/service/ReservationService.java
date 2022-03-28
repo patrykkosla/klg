@@ -15,7 +15,7 @@ public interface ReservationService {
 	Reservation createNewReservation(Long facilityId, Date reservedFrom, Date reservedTo, Long userId);	
 	
 	List<Reservation> getAllReservations();
-	List<Reservation> getAllUserReservations(User user );
+	List<Reservation> getAllUserReservations(String user );
 	List<Reservation> getAllFacilityReservations(Facility facility);
 	Boolean checkIfFasilityIsAvailable(Long facilityId, Date reservedFrom, Date reservedTo);	
 	

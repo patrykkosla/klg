@@ -9,6 +9,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,27 +46,6 @@ public class ReservationServiceImpl implements ReservationService {
 		this.entityManager = entityManager;
 	}
 
-//
-//	public FacilityService getFacilityService() {
-//		return facilityService;
-//	}
-//	
-//	@Autowired
-//	public void setFacilityService(FacilityService facilityService) {
-//		this.facilityService = facilityService;
-//	}
-//
-//
-//	public UserService getUserService() {
-//		return userService;
-//	}
-//
-//	@Autowired
-//	public void setUserService(UserService userService) {
-//		this.userService = userService;
-//	}
-
-
 	@Override
 	public Reservation saveReservation(Reservation reservation) {
 		// TODO Auto-generated method stub
@@ -73,6 +54,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public Reservation editReservation(Reservation reservation) {
+		//sprawdz czy istnieje
+		
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -83,9 +66,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}	
 	
 	@Override
-	public List<Reservation> getAllUserReservations(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reservation> getAllUserReservations(String userName) {		
+		return reservationrepository.findByReservedBy_UserName( userName);
 	}
 
 	@Override
