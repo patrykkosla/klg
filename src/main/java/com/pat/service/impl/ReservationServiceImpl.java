@@ -71,9 +71,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<Reservation> getAllFacilityReservations(Facility facility) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reservation> getAllFacilityReservations(Long facilityId) {		
+		 return reservationrepository.findByFacility_Id(facilityId);
 	}
 
 	@Override

@@ -36,6 +36,12 @@ public class ReservationController {
 		return reservationService.getAllUserReservations(userName);			
 	} 
 	
+	@GetMapping("/facility/{id}")
+	public List<Reservation> getAllFacilityReservations(@PathVariable("id") Long id){	
+		return reservationService.getAllFacilityReservations(id);			
+	} 
+	
+		
 	@PostMapping("/new/{facilityId}/{reservedFrom}/{reservedTo}/{userId}/{reservationCost}")
 	public ResponseEntity<Reservation> createNewReservation(
 			@PathVariable("facilityId" )Long facilityId,
