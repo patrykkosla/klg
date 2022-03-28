@@ -97,5 +97,5 @@ public class Facility {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
-	}
+	}	
 }

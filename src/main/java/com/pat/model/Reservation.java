@@ -78,5 +78,12 @@ public class Reservation {
 
 	public void setReservedTo(Date reservedTo) {
 		this.reservedTo = reservedTo;
+	}
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", facility=" + facility + ", reservedBy=" + reservedBy + ", reservedFrom="
+				+ reservedFrom + ", reservedTo=" + reservedTo + "]";
 	}	
+	
+	
 }
