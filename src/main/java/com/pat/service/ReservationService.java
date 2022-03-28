@@ -12,7 +12,7 @@ public interface ReservationService {
 	Reservation saveReservation(Reservation reservation);
 	Reservation saveReservation(Long  facilityId, Long tenantsId, Date reservedFrom,  Date reservedTo);
 	Reservation editReservation(Reservation reservation);
-	Reservation createNewReservation(Long facilityId, Date reservedFrom, Date reservedTo, Long userId);	
+	Reservation createNewReservation(Long facilityId, Date reservedFrom, Date reservedTo, Long userId, double reservationCost);	
 	
 	List<Reservation> getAllReservations();
 	List<Reservation> getAllUserReservations(String user );

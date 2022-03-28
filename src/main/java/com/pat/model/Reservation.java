@@ -29,15 +29,19 @@ public class Reservation {
 	@Column(name="reserved_to", nullable = false)
 	private Date reservedTo;
 	
+	@Column(name="reservation_cost", nullable = false)
+	private double reservationCost;
+	
 	
 	public Reservation() {}
-	public Reservation(long id, Facility facility, User reservedBy, Date reservedFrom, Date reservedTo) {
+	public Reservation(long id, Facility facility, User reservedBy, Date reservedFrom, Date reservedTo, double reservationCost) {
 		super();
 		this.id = id;
 		this.facility = facility;
 		this.reservedBy = reservedBy;
 		this.reservedFrom = reservedFrom;
 		this.reservedTo = reservedTo;
+		this.reservationCost = reservationCost;
 	}
 	
 	public long getId() {
@@ -83,6 +87,12 @@ public class Reservation {
 	public String toString() {
 		return "Reservation [id=" + id + ", facility=" + facility + ", reservedBy=" + reservedBy + ", reservedFrom="
 				+ reservedFrom + ", reservedTo=" + reservedTo + "]";
+	}
+	public double getReservationCost() {
+		return reservationCost;
+	}
+	public void setReservationCost(double reservationCost) {
+		this.reservationCost = reservationCost;
 	}	
 	
 	

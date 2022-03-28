@@ -36,18 +36,18 @@ public class ReservationController {
 		return reservationService.getAllUserReservations(userName);			
 	} 
 	
-	@PostMapping("/new/{facilityId}/{reservedFrom}/{reservedTo}/{userId}")
+	@PostMapping("/new/{facilityId}/{reservedFrom}/{reservedTo}/{userId}/{reservationCost}")
 	public ResponseEntity<Reservation> createNewReservation(
 			@PathVariable("facilityId" )Long facilityId,
 			@PathVariable("reservedFrom" )String reservedFrom, 
 			@PathVariable("reservedTo" )String reservedTo, 
-			@PathVariable("userId" )Long  userId){			
-			
+			@PathVariable("userId" )Long  userId,	
+			@PathVariable("reservationCost")double reservationCost){
 	
 		 Date reservedFromDate = reservationService.stringToDate(reservedFrom);
 		 Date reservedToDate = reservationService.stringToDate(reservedTo);
 		 return new ResponseEntity<Reservation>(
-			  reservationService.createNewReservation( facilityId,  reservedFromDate, reservedToDate, userId),
+			  reservationService.createNewReservation( facilityId,  reservedFromDate, reservedToDate, userId, reservationCost),
 			  HttpStatus.CREATED);
 	} 
 	

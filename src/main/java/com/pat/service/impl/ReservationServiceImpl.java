@@ -93,7 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 
-	public Reservation  createNewReservation( Long facilityId, Date reservedFrom, Date reservedTo, Long userId   ) {
+	public Reservation  createNewReservation( Long facilityId, Date reservedFrom, Date reservedTo, Long userId, double reservationCost   ) {
 		if (! checkIfFasilityIsAvailable ( facilityId, reservedFrom, reservedTo) ) {
 			return null;
 		}	
@@ -105,6 +105,7 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setReservedBy(user);
 		reservation.setReservedFrom(reservedFrom);
 		reservation.setReservedTo(reservedTo);
+		reservation.setReservationCost(reservationCost);
 		this.createReservation(reservation);
 		
 		return reservation;
