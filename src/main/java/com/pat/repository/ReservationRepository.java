@@ -20,9 +20,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
   @Param("reservedFrom") Date reservedFrom,
   @Param("reservedTo") Date reservedTo);
 
-//	@Query("SELECT r FROM Reservation r WHERE r.user.name  = :name ")
-//	List<Reservation>  findReservationForUserName (  @Param("name") String name);
-
 	@Query("SELECT r FROM Reservation r WHERE r.facility.id = :id ")
 	 List<Reservation> findFacilityReservations (  @Param("id") Long id);
 
@@ -30,7 +27,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	@Query("SELECT r FROM Reservation r WHERE r.facility.id = :id ")
 	 List<Reservation> findUserReservations (  @Param("id") Long id);
 
-	List<Reservation> findByFacility_Id( long id);
+	 List<Reservation> findByFacility_Id( long id);
 
-	List<Reservation> findByReservedBy_UserName(String userName);
+	 List<Reservation> findByReservedBy_UserName(String userName);
 }
