@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pat.model.Reservation;
@@ -56,11 +59,14 @@ public class ReservationController {
 			  HttpStatus.CREATED);
 	}
 
-	@PostMapping("/edit/{reservation}")
-	public ResponseEntity<Reservation> editReservation(Reservation reservation ) {
-		 return new ResponseEntity<>(
-			reservationService.editReservation(reservation),
-			HttpStatus.OK );
+	@PutMapping("/edit")
+	@ResponseBody 
+	public ResponseEntity<Reservation> editReservation(@RequestBody Reservation reservation ) {	
+		Reservation r = reservationService.editReservation(reservation);
+		if( r == null) {
+			return new ResponseEntity<>( r ,  HttpStatus.CONFLICT);
+		}		 
+		return new ResponseEntity<>( r ,  HttpStatus.OK);
 	}
 }
 //1648591200

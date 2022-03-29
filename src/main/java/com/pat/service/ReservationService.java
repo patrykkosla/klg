@@ -3,12 +3,13 @@ package com.pat.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.pat.model.Reservation;
 
 public interface ReservationService {
-
-	Reservation saveReservation(Reservation reservation);
-	Reservation saveReservation(Long  facilityId, Long tenantsId, Date reservedFrom,  Date reservedTo);
+	Reservation createReservation (Reservation r);
+	Reservation saveEditedReservation (Reservation r);
 	Reservation editReservation(Reservation reservation);
 	Reservation createNewReservation(Long facilityId, Date reservedFrom, Date reservedTo, Long userId, double reservationCost);
 

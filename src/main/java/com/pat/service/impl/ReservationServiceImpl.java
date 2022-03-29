@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +25,9 @@ import com.pat.service.UserService;
 @Transactional
 public class ReservationServiceImpl implements ReservationService {
 
-	private ReservationRepository reservationrepository;
-	private FacilityService facilityService;
-	private UserService userService;
+	private final ReservationRepository reservationrepository;
+	private final FacilityService facilityService;
+	private final UserService userService;
 	EntityManager entityManager;
 
 	@Autowired
@@ -43,17 +45,34 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Reservation saveReservation(Reservation reservation) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Reservation editReservation(Reservation newR) {
+		Reservation oldR ;
+		try {
+			oldR = reservationrepository.getById(newR.getId());	
+		} catch (Exception e) {
+			return null;	
+		}		
+		if ( this.checkIfDatesAreDiffrent(oldR, newR) ) {
+			if(!this.checkIfFasilityIsAvailable(oldR.getFacility().getId(), newR.getReservedFrom(), newR.getReservedTo())) {
+				 return null;	
+			}
+				oldR.setReservedFrom(newR.getReservedFrom());
+				oldR.setReservedTo(newR.getReservedTo());
+		}
+		oldR.setReservationCost(newR.getReservationCost());
 
-	@Override
-	public Reservation editReservation(Reservation reservation) {
-		//sprawdz czy istnieje
-
-		// TODO Auto-generated method stub
-		return null;
+		User user;
+		try {
+			user = this.userService.getUserById(newR.getReservedBy().getUserId());
+		} catch (Exception e) {
+			return null; 
+		}
+		if( user != newR.getReservedBy()){
+			oldR.setReservedBy(user);
+		}
+		
+		this.saveEditedReservation(oldR);
+		return oldR;
 	}
 
 	@Override
@@ -72,12 +91,6 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Reservation saveReservation(Long facilityId, Long tenantsId, Date reservedFrom, Date reservedTo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Boolean checkIfFasilityIsAvailable(Long facilityId, Date reservedFrom, Date reservedTo) {
 		 return reservationrepository.findAllReservation(facilityId, reservedFrom, reservedTo).isEmpty();
 	}
@@ -93,11 +106,11 @@ public class ReservationServiceImpl implements ReservationService {
 		if (! checkIfFasilityIsAvailable ( facilityId, reservedFrom, reservedTo) ) {
 			return null;
 		}
-		Facility faclity = facilityService.gateFacilitybyId(facilityId);
+		Facility fasility = facilityService.gateFacilitybyId(facilityId);
 		User user = userService.getUserById(userId);
 
 		Reservation reservation = new Reservation();
-		reservation.setFacility(faclity);
+		reservation.setFacility(fasility);
 		reservation.setReservedBy(user);
 		reservation.setReservedFrom(reservedFrom);
 		reservation.setReservedTo(reservedTo);
@@ -106,11 +119,25 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return reservation;
 	}
-
+	
+	@Override
     @Transactional
     public Reservation createReservation (Reservation r){
         entityManager.persist(r);
         return r;
     }
+	
+	@Override
+    @Transactional
+    public Reservation saveEditedReservation (Reservation r){
+    	entityManager.merge(r);
+    	  return r;
+    }
+
+    public Boolean checkIfDatesAreDiffrent(Reservation oldR, Reservation newR) {
+    	return (oldR.getReservedFrom()  != newR.getReservedFrom() ) ||	(oldR.getReservedTo()	!= newR.getReservedTo());  
+    }
+    
+    
 
 }
