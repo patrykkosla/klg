@@ -3,8 +3,6 @@ package com.pat.service;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
 import com.pat.model.Reservation;
 
 public interface ReservationService {

@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "c1ce28b7-c040-4610-9903-00db75214310",
+		"name": "klg rekrutacjia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "facility",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/facilities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"facilityName\": \"Chatka czarownicy\",\r\n    \"pricePerDay\": \"100.1\",\r\n    \"propertyArea\": \"20\",\r\n    \"descryption\": \" Typowa chatkka z piernika \"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/facilities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/facilities",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/facilities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservations",
+			"item": [
+				{
+					"name": "getAllReservations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReservationsByUserName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/tenant/jan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"tenant",
+								"jan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReservationsByFacilityID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/facility/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"facility",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReservationsByFacilityID Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/facility/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"facility",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nowa rezerwacja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/new/1/2025-04-08/2025-04-18/2/333",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"new",
+								"1",
+								"2025-04-08",
+								"2025-04-18",
+								"2",
+								"333"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edytuj rezerwacje",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 1,\r\n        \"facility\": {\r\n            \"id\": 5,\r\n            \"facilityName\": \"Vila Stefana\",\r\n            \"pricePerDay\": 225.0,\r\n            \"propertyArea\": 2.0,\r\n            \"descryption\": \"Possimus nobis ex molestias. Eveniet consequatur sit quos. Deleniti veritatis quo est minus. Libero est ut suscipit quasi hic amet. Voluptate fugiat maiores soluta velit rerum.\",\r\n            \"owner\": {\r\n                \"userId\": 6,\r\n                \"userName\": \"Aleksandra\"\r\n            }\r\n        },\r\n        \"reservedBy\": {\r\n            \"userId\": 3,\r\n            \"userName\": \"Jan\"\r\n        },\r\n        \"reservedFrom\": \"2001-11-21T23:00:00.000+00:00\",\r\n        \"reservedTo\": \"2031-11-26T23:00:00.000+00:00\",\r\n        \"reservationCost\": 100.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/edit/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"edit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservations/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservations",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

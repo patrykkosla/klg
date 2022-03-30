@@ -51,7 +51,6 @@ public class ReservationController {
 			@PathVariable("reservedTo" )String reservedTo,
 			@PathVariable("userId" )Long  userId,
 			@PathVariable("reservationCost")double reservationCost){
-
 		 Date reservedFromDate = reservationService.stringToDate(reservedFrom);
 		 Date reservedToDate = reservationService.stringToDate(reservedTo);
 		 return new ResponseEntity<>(
@@ -62,6 +61,7 @@ public class ReservationController {
 	@PutMapping("/edit")
 	@ResponseBody 
 	public ResponseEntity<Reservation> editReservation(@RequestBody Reservation reservation ) {	
+//		return new ResponseEntity<>( reservation, HttpStatus.OK);
 		Reservation r = reservationService.editReservation(reservation);
 		if( r == null) {
 			return new ResponseEntity<>( r ,  HttpStatus.CONFLICT);
