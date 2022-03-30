@@ -11,6 +11,7 @@
 	<groupId>com.pat</groupId>
 	<artifactId>klg-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>klg-test</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -36,13 +37,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-api</artifactId>
-		    <version>5.8.2</version>
-		    <scope>test</scope>
-		</dependency>	
 	</dependencies>
 
 	<build>
